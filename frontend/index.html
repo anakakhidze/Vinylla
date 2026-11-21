@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Vinylla — Spin the Sound in 3D</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&family=Cinzel+Decorative:wght@400;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<div id="rose" aria-hidden="true"></div>
+<div id="veil" aria-hidden="true"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="trail" aria-hidden="true"></canvas>
+<canvas id="gl" aria-label="Vinylla 3D world. Scroll to travel forward, click a card to play."></canvas>
+<div id="aura" aria-hidden="true"></div>
+<nav id="nav" class="glass">
+  <a class="logo" href="#home" aria-label="Vinylla home"><svg class="lg" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lgRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EEDDFF"/><stop offset=".55" stop-color="#B77CFF"/><stop offset="1" stop-color="#FF6BD6"/></linearGradient><linearGradient id="lgCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3E6FF"/><stop offset="1" stop-color="#B77CFF"/></linearGradient><radialGradient id="lgBody" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#2d1758"/><stop offset="1" stop-color="#0b0618"/></radialGradient></defs><circle cx="20" cy="20" r="18.3" fill="url(#lgBody)" stroke="url(#lgRing)" stroke-width="1.1"/><circle cx="20" cy="20" r="14.6" fill="none" stroke="rgba(255,255,255,.08)" stroke-width=".6"/><circle cx="20" cy="20" r="11.2" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".6"/><circle cx="20" cy="20" r="6.2" fill="url(#lgCore)"/><circle cx="20" cy="20" r="1.5" fill="#0b0618"/><path d="M10.8 15.2a11.2 11.2 0 0 1 5.6-4.6" stroke="rgba(255,255,255,.8)" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg><b>Vinylla</b></a>
+  <div class="links"><a href="#home" data-v="home">Home</a><a href="#explore" data-v="explore">Explore</a><a href="#player" data-v="player">Now playing</a></div>
+  <div class="nav-end"><label class="search"><input id="q" placeholder="Search tracks, artists, or albums" aria-label="Search"></label>
+  <button class="av me" id="prof" aria-label="Account" title="Account">V</button></div>
+</nav>
+<div id="hint">Scroll to dive in</div>
+<div id="story">
+ <section class="st l" id="s0"><span class="story-kicker">VINYLLA · 3D AUDIO EXPERIENCE</span><h1>Step <em>inside</em> the sound.</h1><p>Interactive vinyl playback, live lyrics, and instant search—all in one space.</p><button class="big" id="go">Start listening</button></section>
+ <section class="st r" id="s1"><span class="story-kicker">A LITTLE DEEPER</span><h2>Let the <em>rhythm</em> lead.</h2><p>Color, light and motion shift with every beat as you move through the grooves.</p></section>
+ <section class="st l" id="s2"><span class="story-kicker">CLOSER TO THE GROOVE</span><h2>Six <em>tracks</em>, one journey.</h2><p>Synthwave, lo-fi, ambient and electronic, all waiting in the listening lounge just ahead.</p></section>
+ <section class="st c" id="s3"><span class="story-kicker">AT THE END OF THE GROOVE</span><h2>Pick your <em>next</em> listen.</h2><p>Today’s top choices. Pick a cover and the music starts right away.</p><div id="homeTop" class="home-top"></div></section>
+</div>
+<button id="cta" class="big">Explore the library</button>
+<div id="spacer"></div>
+<main id="explore"><aside id="menu" class="glass"></aside><section id="content" class="sec"></section></main>
+<main id="player"><section id="pstage" class="glass"><canvas id="pc" aria-label="3D turntable and lyrics. Drag to orbit, click the record to play or pause."></canvas>
+ <div class="seg"><button id="m1" class="sel">Turntable</button><button id="m2">Live lyrics</button></div><div id="ptitle"></div><div class="lyrics-hud" id="lyricsHud"><span class="eyebrow">Now singing · synced to playback</span><div class="current" id="lyricCurrent"></div><div class="next-line" id="lyricNext"></div><div class="lyrics-progress"><i id="lyricProgress"></i></div></div></section>
+ <aside id="queue" class="glass"><h3>Up next</h3><div id="ql"></div></aside></main>
+<div id="notes"></div>
+<button id="mini" title="Hover to preview, click to keep playing" aria-label="Play or pause"><span class="w"></span><span class="w w2"></span><span id="md"><i id="ml"></i></span><span id="mi">▶</span></button>
+<footer id="bar" class="glass">
+  <div class="np"><div class="cov" id="ncov"></div><div style="min-width:0"><b id="nt"></b><span id="na"></span></div></div>
+  <div class="ctl"><div class="row"><button id="sh" aria-label="Shuffle">⇄</button><button id="prev" aria-label="Previous">⏮</button><button id="pp" aria-label="Play">▶</button><button id="next" aria-label="Next">⏭</button><button id="rp" aria-label="Repeat">↻</button></div>
+    <div class="pr"><span id="tc" style="text-align:right">0:00</span><input id="seek" type="range" min="0" max="120" value="0" step="0.5" aria-label="Seek"><span id="td">2:00</span></div></div>
+  <div class="rt"><button id="mute" aria-label="Mute">🔈</button><input id="vol" type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Volume"></div>
+</footer>
+<div id="acct" aria-hidden="true"><div class="acct-box glass" data-mode="in" role="dialog" aria-modal="true" aria-label="Account"><button class="acct-x" id="acctX" aria-label="Close">✕</button>
+<div class="acct-poster" id="acctPoster"><img src="assets/poster/vinylla-poster.webp" alt="Vinylla poster"><div class="acct-pcap"><p id="acctSub"></p><button class="big acct-switch" id="acctSwitch" type="button">Sign up</button></div></div>
+<div class="acct-pane" id="paneIn"><form class="acct-form" id="formIn"><h3>Sign in</h3><input id="si-email" type="email" placeholder="Email" aria-label="Email" required><input id="si-pass" type="password" placeholder="Password" aria-label="Password" required><button class="big acct-go" type="submit">Sign in</button></form></div>
+<div class="acct-pane" id="paneUp"><form class="acct-form" id="formUp"><h3>Create account</h3><input id="su-name" placeholder="Name" aria-label="Name" required><input id="su-email" type="email" placeholder="Email" aria-label="Email" required><input id="su-pass" type="password" placeholder="Password" aria-label="Password" required><button class="big acct-go" type="submit">Create account</button></form></div>
+</div></div>
+<div id="ytHost"></div>
+<div id="modal"><div class="box glass"><div style="display:flex;justify-content:space-between"><b style="font-size:18px">AI music and web API guide</b><button id="x" aria-label="Close">✕</button></div><div class="tabs" id="tabs"></div><p id="ttext" style="font-size:14px;line-height:1.6;color:rgba(255,255,255,.75)"></p><pre id="tcode"></pre></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="js/app.js"></script>
+</body></html>
