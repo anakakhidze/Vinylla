@@ -13,6 +13,13 @@ Vinylla is a 3D music web app. A vinyl turntable plays songs from YouTube, with 
 - **Social features:** find and follow people, friends list, block users, and like other people's playlists
 - **AI music assistant** that answers questions and plays the songs it suggests
 
+## Built with
+
+- **Frontend:** HTML, CSS, vanilla JavaScript, Three.js for the 3D turntable, and the YouTube IFrame player for playback
+- **Backend:** Node.js, Express, and PostgreSQL (through the `pg` package)
+- **AI assistant:** Python, FastAPI, Uvicorn, and Google's Gemini SDK
+- **Data sources:** YouTube Data API, LRCLIB (lyrics), MusicBrainz and Cover Art Archive (covers), and Deezer (covers)
+
 ## Project structure
 
 ```
